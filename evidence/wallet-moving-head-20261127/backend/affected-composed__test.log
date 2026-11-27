@@ -1,0 +1,6 @@
+test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 1.243s
+
+OK

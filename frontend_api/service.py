@@ -454,6 +454,8 @@ class Projection:
                                'configuration_sha256': self.identity, 'accounting_version': self.accounting_version}}
         if self.accounting_version == 7 and self.earnings_history is not None:
             result['wallet_view_profile'] = 2 if self.wallet_read_batch == 1 else 1
+            if self.history is not None:
+                result['fixed_block_nft_view_profile'] = 1
         return result
 
     def _admitted(self, block: dict[str, Any], *, asset_health=None,
@@ -528,6 +530,25 @@ class Projection:
         block = {'blockHash': header['hash'], 'requireCanonical': True}
         return header, head, block
 
+    def _snapshot_at(self, block_number, block_hash):
+        """Retain a caller's exact confirmed anchor while the head advances."""
+        if (type(block_number) is not int or not 1 <= block_number < 1 << 63 or
+                not isinstance(block_hash, str) or block_hash != _hash(block_hash)):
+            raise ValueError('Invalid fixed NFT snapshot')
+        safe, head, _ = self._snapshot()
+        if not self.start <= block_number <= safe['number']:
+            raise ProjectionError('Fixed NFT block is not confirmed')
+        header = self._header(hex(block_number))
+        if header['number'] != block_number or header['hash'] != block_hash:
+            raise ProjectionError('Fixed NFT anchor is no longer canonical')
+        self._fresh(header)
+        expire_at(header['timestamp'] + self.max_age, self.clock)
+        return header, head, {'blockHash': block_hash, 'requireCanonical': True}
+
+    def _require_fixed_nft_view(self):
+        if self.accounting_version != 7 or self.history is None or self.earnings_history is None:
+            raise HistoryError('Fixed NFT views require exact LP and configured earnings history')
+
     def _fresh(self, header):
         now = self.clock()
         if header['timestamp'] > now + 30 or now - header['timestamp'] > self.max_age:
@@ -588,6 +609,11 @@ class Projection:
         return self.earnings_history.read(None if identifier is None else token_id(identifier))
 
     @bounded_request
+    def earnings_at(self, identifier, block_number, block_hash):
+        self._require_fixed_nft_view()
+        return self.earnings_history.read_at(token_id(identifier), block_number, block_hash)
+
+    @bounded_request
     def nft(self, identifier: Any) -> dict[str, Any]:
         if getattr(self, 'wallet_read_batch', 0) == 1:
             from frontend_api.canonical_cache import scope
@@ -595,9 +621,19 @@ class Projection:
                 return self._nft(identifier)
         return self._nft(identifier)
 
-    def _nft(self, identifier: Any) -> dict[str, Any]:
+    @bounded_request
+    def nft_at(self, identifier, block_number, block_hash):
+        self._require_fixed_nft_view()
+        identifier = token_id(identifier)
+        if getattr(self, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import scope
+            with scope(self):
+                return self._nft(identifier, snapshot=self._snapshot_at(block_number, block_hash))
+        return self._nft(identifier, snapshot=self._snapshot_at(block_number, block_hash))
+
+    def _nft(self, identifier: Any, *, snapshot=None) -> dict[str, Any]:
         nft_id = token_id(identifier)
-        header, head, block = self._snapshot()
+        header, head, block = self._snapshot() if snapshot is None else snapshot
         safe = header['number']
         lifecycle = self._verify_deployment(block)
         health = {} if self.royalty_reporting is not None else None

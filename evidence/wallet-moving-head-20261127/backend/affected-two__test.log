@@ -1,0 +1,16 @@
+test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block) ... FAIL
+test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) ... ok
+
+======================================================================
+FAIL: test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 132, in test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block
+    self.assertEqual(before, after)
+AssertionError: {'sch[9071 chars]': 100, 'logs_examined': 18, 'claim_events': 0[2226 chars]e.'}} != {'sch[9071 chars]': 101, 'logs_examined': 18, 'claim_events': 0[2226 chars]e.'}}
+Diff is 22716 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.296s
+
+FAILED (failures=1)

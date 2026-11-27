@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "complete": true,
+  "captured_utc": "2026-11-27T22:14:05.028025+00:00",
+  "test_methods": [
+    "test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block"
+  ],
+  "tests_run": 1,
+  "errors": 0,
+  "failures": 0,
+  "skips": 0,
+  "seconds": 1.25,
+  "source_sha256": {
+    "frontend_api/service.py": "5726b6fb76d30d3344d32852b84a178ae4767f7cc2dc3a8f31001cfc37b9074b",
+    "frontend_api/earnings.py": "54f5846ffb63e19f59fe17f393acf66f01f9ad2c163b056aa28eaa151a1bb0af",
+    "frontend_api/server.py": "05022f0f105f161e7191ff2b5d0077134099f58b3705f262758ab3ca64c674f3",
+    "frontend_api/worker.py": "7e0962a7dac4d07b28e56908c9f0baa8d701286f43888b9532270fc47e851f3b",
+    "config/nginx/popl-api-locations.conf": "93d6ad8f83e187f6973bb0d5be2e87943b37366468429d14ff13f2b95023a744",
+    "tests_python/test_fixed_nft_anchors.py": "3cf925edbb9779980d9465957b15b3569e12e1f663a0291cb4d8d04b7e46a613"
+  },
+  "source_unchanged_after": true,
+  "explicit_nonfinancial_indexer_progress_metadata_paths": [
+    "$.previously_claimed.provenance.indexer_next_block",
+    "$.royalty_conversions.provenance.indexer_next_block",
+    "$.lp_conversions.provenance.indexer_next_block",
+    "$.provenance.epochs[0].history.indexer_next_block"
+  ],
+  "scope": "ONLY corrected NEW composed realSQLite/checkpoint/controlledABI method; other3PASS reused. No old bodies/EVM/provider/full F6."
+}

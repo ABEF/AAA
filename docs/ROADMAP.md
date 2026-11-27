@@ -272,16 +272,18 @@ pages take121.438s before a real full-wallet HTTP journey. The80-GET count alone
 does not close P17. Current request-local raw/digest reuse completes the actual
 32-NFT/66-descriptor wallet plus eight cards in83.708s/36GETs with final
 independent accounting and freshness checks. Full normal1000-NFT/lineage/provider
-acceptance remains; CWR09 requires coherent per-card NFT/earnings anchors when
-the chain advances. This finite local pass does not authorize rollout. Reuse the actual39-instance/32-NFT F6 fixture and current
+acceptance remains. CWR09 now binds both card reads to the same exact anchor;
+the separate actual moving-head case completes84.262s with final age114.514s,
+only5.486s below120. Treat this as finite local evidence, not robust hosting. This finite local pass does not authorize rollout. Reuse the actual39-instance/32-NFT F6 fixture and current
 source-bound evidence; the older1000-NFT substitute-access fixture cannot supply
 normal deployment/history admission. Actual maximum-state/lineage/provider and
 120s complete-consumer acceptance remain explicit work.
 
 The original33-GET/117.628-second timeout and incomplete output capture remain
 failed stages in the current review. The affected32-NFT composition now passes;
-next qualify maximum normalF6/lineage/provider and moving-head card anchors
-without wider budgets. A newly source-bound checkpoint separately passes
+next qualify maximum normalF6/lineage/provider and sustained moving-chain
+operation without wider budgets. The new fixed-block card capability addresses
+the specific two-request anchor race; install matching components only after review. A newly source-bound checkpoint separately passes
 3,098logical/6,194POST/4.86628s with exact rights. These finite checks do not
 approve deployment, consumer adoption or the whole P17 package.
 

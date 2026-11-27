@@ -36,7 +36,7 @@ This is an undeployed production candidate; production is **NOT APPROVED**.
 
 ## 27 November F6 wallet-read follow-through
 
-Actual normal F6 review found a legitimate304131-gas LP component above the old250k helper allowance. The user explicitly approved500k LP reads and three NFTs/helper, retaining24M total,50k plain/1M royalty and all API/financial/transaction limits. Adopt matching Python/Solidity/artifact and a NEW reviewed source-bound checkpoint; never relabel the old artifact. Frozen protocol F6 sources stay unchanged. The current source inventory is193Python/2165definitions/282lambdas,61/39/4 and1021ABI rows.
+Actual normal F6 review found a legitimate304131-gas LP component above the old250k helper allowance. The user explicitly approved500k LP reads and three NFTs/helper, retaining24M total,50k plain/1M royalty and all API/financial/transaction limits. Adopt matching Python/Solidity/artifact and a NEW reviewed source-bound checkpoint; never relabel the old artifact. Frozen protocol F6 sources stay unchanged. The current source inventory is193Python/2174definitions/282lambdas,61/39/4 and1021ABI rows.
 
 Use [the current qualification](reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through) and [machine evidence](evidence/wallet-f6-20261127/INDEX.json). The affected1000-NFT/66-descriptor model fits individual requests, but17pages take121.438s without physicalHTTP; this does not qualify120s complete-wallet/provider performance. The old1000-NFT substitute-access fixture lacks genuine normal history. Raw states/DB/configuration/runtime binaries remain outside Git. Keep all original failures, source-specific scopes and current readiness limits. No existing site, service, Anvil8902, journal, signer or paused heartbeat adoption.
 
@@ -57,9 +57,17 @@ source13/19 membership or old journal/package adoption. A NEW matching checkpoin
 is required. The first83.825s run remains NONPASS from combined evidence size;
 the final output-only partition keeps every artifact1MiB and all assertions.
 Use [current card/history evidence](evidence/wallet-cards-20261127/INDEX.json).
-Maximum normal1000F6/lineage/provider/rollout remain open. CWR09 records separate
-latest NFT/earnings anchors disagreeing on a moving head; preserve equality and
-qualify a fixed-block capability separately. Existing sites/services/journals,
+Maximum normal1000F6/lineage/provider/rollout remain open. CWR09 is fixed through
+advertised `fixed_block_nft_view_profile:1` for exact7 plus both history profiles:
+NFT+earnings use the same captured number/hash. Older latest endpoints remain
+explicit compatibility; no fixed-route failure falls back to latest. Nine NEW
+methods pass. Actual32-NFT/eight-card36GET composition passes84.262s through
+two genuine heads459→460→461 and Indexer lag/ahead, with final raw proofs and
+snapshot age114.514s/120s (5.486s margin). This is finite one-confirmation
+lab evidence, not production finality/provider/maximum or sustained acceptance.
+Use [moving-head evidence](evidence/wallet-moving-head-20261127/INDEX.json).
+Matching API/worker/Nginx/consumer and NEW reviewed checkpoint require separate
+adoption. Signer/null configurations, NFT economics and all limits stay. Existing sites/services/journals,
 Anvil8902, public-null/Anvil-only signer and paused heartbeat stay untouched.
 
 ## Current implementation and required rights
@@ -128,7 +136,7 @@ Anvil8902, public-null/Anvil-only signer and paused heartbeat stay untouched.
 - Preserve source-specific failures/skips and distinguish new execution from exact
   reuse. Do not rerun unchanged contract/browser/keeper suites. Use focused affected
   checks; record actual method/source/fixture scopes without summing overlaps.
-- Current inventory is `evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json`.
+- Current inventory is `evidence/wallet-moving-head-20261127/FUNCTION_INVENTORY.json`.
   Optional `wallet_read_batch:1` selects read profile2; omitted/zero remains profile1.
   Constructor-only fixed STATICCALL aggregation is read-only and outside the frozen
   protocol graph. Keep exact per-NFT accounting/full86400s/request/cache/gas bounds;

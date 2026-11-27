@@ -1,0 +1,319 @@
+{
+  "schema": 1,
+  "complete": true,
+  "kind": "CWR09_actual_c838_moving_confirmed_heads_and_protected_host_preservation",
+  "source_scope": "Explicit fixed_block_nft_view_profile1 + exact NFT/detail earnings routes; unchanged source9/source10 manifests and signing boundary",
+  "generation_sha256": "278c55ec86eddd13da294dd9c922d98df35ae22f75875bc8ddcd04915c44bfbe",
+  "checkpoint_sha256": "975b09c92881ac5f4793ed43991db523e2bf2d96935a3459ce43943f2a142949",
+  "consumer_result_sha256": "f809145541d6c4f70263d7d9478b71e6ec4adc36d1e09458bcc69daf278eac05",
+  "consumer_request_trace_sha256": "3592e2df7c0ef7cae6086ddce6daa504d1b454e042d99b14a902c722a591c0d9",
+  "mover_result_sha256": "7624a4a57e791cdf2594676fece0e10d575e6f043e99f154c88bff4bc1b9e440",
+  "statistics": {
+    "api_requests": 36,
+    "direct_consumer_RPCs": 381,
+    "all_HTTP_status_200": true,
+    "full_journey_elapsed_seconds": 84.262287667,
+    "final_proof_elapsed_seconds": 84.249736547,
+    "actual_final_snapshot_age_seconds": 114.514,
+    "actual_snapshot_margin_seconds": 5.486000000000004,
+    "financial20_headers_seconds": 46.329028285,
+    "all16_fixed_card_routes_anchor459": true,
+    "physical_confirmed_heads": [
+      460,
+      460,
+      461
+    ],
+    "physical_indexer_after": [
+      460,
+      461,
+      462
+    ]
+  },
+  "history_cases": "First fixed earnings succeeded while newer confirmed460 remained unindexed; genuine Indexer catchup to461; second new confirmed461 indexed to462 before fixed earnings. All eight card details and earnings use original459.",
+  "archive_admission": {
+    "calls": 131,
+    "complete": true,
+    "creation_archive_gate_passed": true,
+    "elapsed_seconds": 2.640095215290785,
+    "failed_checks": [],
+    "gate_artifact": "/opt/popl-ubuntu-backup-recovery-20261126-c814/wallet-f6-20261127-c838/control/COMPOSED_ARCHIVE_GATE.json",
+    "gate_bytes": 29484,
+    "gate_sha256": "5bd9b8dfdb36e4b8af2cf4ca1f9c76b7346261aae0fba0d2fcc408ee91f0bca2",
+    "kind": "actual_F6_archive_gate_summary",
+    "mutations": 0,
+    "next_action": "Stop and review before any clock/head mutation on any failure.",
+    "original_lab_identity_unchanged": true,
+    "owned_unit": {
+      "command_sha256": "e37230b37db27d3f2c164d60b280144ac3282ab7930d6ae1b72a0655dea9dfd6",
+      "invocation_id": "f58ba8d359c148f0a125f678447cc6ca",
+      "pid": 193369,
+      "unit": "popl-wallet-f6-20261127-c838-node.service"
+    },
+    "runtime_roles_checked": 123,
+    "schema": 1,
+    "source_anchor": {
+      "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+      "number": "0x1bd",
+      "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+      "timestamp": "0x6b005beb"
+    },
+    "transactions_submitted": 0,
+    "transport_calls_including_startup": 135
+  },
+  "final_current_account_preservation_NOT_archive_recovery": {
+    "all123_accounts_unchanged": true,
+    "archive_recovery_snapshot": false,
+    "calls": 10,
+    "complete": true,
+    "dump_preserved_historical_states": false,
+    "final_creation_code_guards": [
+      {
+        "bytes": 0,
+        "keccak256": null,
+        "number": 30,
+        "selector_mode": "number"
+      },
+      {
+        "bytes": 0,
+        "keccak256": null,
+        "number": 30,
+        "selector_mode": "canonical"
+      },
+      {
+        "bytes": 24234,
+        "keccak256": "0xd7d27d96e138c2b5a56643863100c3239c0c55944668f95b9bde1bb4d5cd6803",
+        "number": 31,
+        "selector_mode": "number"
+      },
+      {
+        "bytes": 24234,
+        "keccak256": "0xd7d27d96e138c2b5a56643863100c3239c0c55944668f95b9bde1bb4d5cd6803",
+        "number": 31,
+        "selector_mode": "canonical"
+      }
+    ],
+    "final_numeric_genesis": "0x828f888a4efcfb571dcc20bbfa24896b388a35c21cfb8847f1623b03c7d1b307",
+    "fresh450": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0xb3ac",
+      "hash": "0xae90c2ef0705f26b98b231ed5c826de4ec6690eec1b5d7f7da524184b069e892",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0xaeb1c4f5c3f19b4fefb329f1d8a726f024f08429c01a5471a8b381cf56da9998",
+      "nonce": "0x0000000000000000",
+      "number": "0x1c2",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x5392df276c9652f527bb524d380900a8e16a8dcc642497b94ca04918a8963695",
+      "receiptsRoot": "0x8ab0c5604f4814bb9fa6e88b44937eb91222afa2ec01c22f7c268fc6b610faf9",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x2d6",
+      "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+      "timestamp": "0x6b09d405",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xc408915787c07e0e98692966ba492119b962329751496188d723fdb7e5add816"
+      ],
+      "transactionsRoot": "0x277163932c772798f0fd28aa8013363ed262294d10b72dd92b8dc26c48fc074b",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "head": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x0",
+      "hash": "0x22ded4d662152cadefd90a87192b3272d926cace3a5d54e1b7577ec550ff5964",
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x7880b8311c0ad567d6f9e4426fe7f1eceda2548df35b3558d8c508c786dd30b4",
+      "nonce": "0x0000000000000000",
+      "number": "0x1cd",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+      "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x244",
+      "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+      "timestamp": "0x6b0a03ae",
+      "totalDifficulty": "0x0",
+      "transactions": [],
+      "transactionsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "kind": "actual_F6_c838_CURRENT_account_preservation_NOT_archive_recovery",
+    "old445": {
+      "baseFeePerGas": "0x7",
+      "blobGasUsed": "0x0",
+      "difficulty": "0x0",
+      "excessBlobGas": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1e84800",
+      "gasUsed": "0x20b8c",
+      "hash": "0x58ac366dc4153863f8c0f65cf8a5445ef94d84d96c9f726e57cfb6f317e7dc97",
+      "logsBloom": "0x00000000000000000000010000000000000000000080000000000000000000000000000000000001000000200000000000000000000000000000000200004000000000000000000000000000000000000000000001000000000000000000000000000000000000000200000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000020000000000010000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000001002000000000000000000000000000000000",
+      "miner": "0x0000000000000000000000000000000000000000",
+      "mixHash": "0x6350010dc1f011a3c3c4974015f1ac8d920d4140cd293cc630953e4d1a0b740b",
+      "nonce": "0x0000000000000000",
+      "number": "0x1bd",
+      "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "parentHash": "0xb021a2605d28045fa3fc0fc2d3e39e01d596487874ef4d0fb7fb51458a0e2e9a",
+      "receiptsRoot": "0x050ae6edba02f68afcd9eebd7278b2e713a66b897af66c1eb5953c11dc93e9c7",
+      "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+      "size": "0x296",
+      "stateRoot": "0x12edc5a885f78458130f5d9c9f21167bae239552458b11e98beb1c79a61ab01e",
+      "timestamp": "0x6b005beb",
+      "totalDifficulty": "0x0",
+      "transactions": [
+        "0xb414de324a095adcea0902d9cf5af00217704ddee36811c93e49bc6b6bc9c60c"
+      ],
+      "transactionsRoot": "0xd76f6ca49ec63aeb2f81b5cb8aabb2ec8c1a36ea402b682015c278fca91739c2",
+      "uncles": [],
+      "withdrawals": [],
+      "withdrawalsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"
+    },
+    "original_full_historical_input_retained_unchanged": true,
+    "owned_identity": {
+      "cgroup_sha256": "ce88607d1d6eb2b60d2ef828f5a8b96a1a949852fc3848502f6be5d602d5f00f",
+      "command_sha256": "e37230b37db27d3f2c164d60b280144ac3282ab7930d6ae1b72a0655dea9dfd6",
+      "invocation_id": "f58ba8d359c148f0a125f678447cc6ca",
+      "pid": 193369,
+      "start_ticks": "913327584",
+      "unit": "popl-wallet-f6-20261127-c838-node.service"
+    },
+    "production_approved": false,
+    "schema": 1,
+    "snapshot_decoded_bytes": 61019739,
+    "snapshot_decoded_sha256": "fa1ef23b6b63a52b92c3e7b7392b161392ebc816a6e802159299021c9cbca7d7",
+    "snapshot_gzip_bytes": 5032707,
+    "snapshot_gzip_sha256": "245964df75efff89748a16d1bfdcec3dbc60ecee3adbdf7ba890d10fa47d2292",
+    "source_snapshot_sha256": "4a0a9d74d8bbe14b9dc9338a44ce93a20d34051aaf1ee8151a95ecfcd5111e47",
+    "state_changes": 0,
+    "transactions_submitted": 0
+  },
+  "own_cleanup": {
+    "complete": true,
+    "stopped": [
+      {
+        "cgroup_empty": true,
+        "stage": "consumer",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "mover",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "catchup-consumer",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "proxy",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "worker",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "proxy-validate",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "manifest",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "bind",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "candidate-review",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "checkpoint",
+        "stopped": true
+      },
+      {
+        "cgroup_empty": true,
+        "stage": "catchup-checkpoint",
+        "stopped": true
+      },
+      {
+        "not_started": true,
+        "stage": "features"
+      },
+      {
+        "not_started": true,
+        "stage": "micro-earnings"
+      },
+      {
+        "not_started": true,
+        "stage": "micro-nft"
+      }
+    ]
+  },
+  "own_node_stop": {
+    "lab_preserved": true,
+    "original_services_changed": false,
+    "stopped": true,
+    "unit": {
+      "ActiveState": "inactive",
+      "ControlGroup": "",
+      "ExecMainCode": "0",
+      "ExecMainStatus": "0",
+      "Group": "",
+      "Id": "popl-wallet-f6-20261127-c838-node.service",
+      "InvocationID": "",
+      "LoadState": "not-found",
+      "MainPID": "0",
+      "Restart": "no",
+      "Result": "success",
+      "RootDirectory": "",
+      "RuntimeMaxUSec": "infinity",
+      "SubState": "dead",
+      "User": ""
+    }
+  },
+  "preserved_old_baseline_fields": {
+    "files": true,
+    "services": true,
+    "listeners": true,
+    "predecessor_history_files": true,
+    "c829_lab": true
+  },
+  "controlled_empty_headers_during_journey": 2,
+  "preparation_empty_headers": 2,
+  "protocol_or_public_transactions": 0,
+  "old_test_bodies_rerun": 0,
+  "suite_repetition": false,
+  "limitations": [
+    "Isolated32NFT/66descriptor controlled external graph; not maximum1000NFT or production provider/load/site adoption",
+    "Two controlled head changes, not continuous chain cadence, reorg campaign or sustained operation",
+    "Actual confirmation depth1; no12-confirmation qualification claimed",
+    "Final age114.514s leaves5.486s, a thin finite margin with ~30.25s initial fixed-head age",
+    "Current-only export is not archival host-loss recovery proof; original full historical input retained unchanged",
+    "Nonzero moving24h earnings boundary remains separate because original earned fees are older than24h"
+  ],
+  "production_approved": false
+}

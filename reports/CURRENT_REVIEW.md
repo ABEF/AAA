@@ -20,7 +20,7 @@ Default activation/growth minima remain $100/$5, subject to a higher pool minimu
 
 The selected contribution candidate is 32M gas with full 20% padding, maximum admitted estimate 26,666,666; backend decimal string and website integer must match. Keeper/manual maintenance remains 24M with full 25%; claims remain 12M with full 20%; historical defaults and source-specific evidence are not relabelled. All 13 controlled F6 cold cases fit their original 20M/full20% profile. In the expanded 1,000-NFT/64-ERC20-plus-ETH/two-LP fixture, 11/12 contributions fit 32M; the worst direct estimate remains 476,135 above admission. A separately paid preparation option does not remove that direct shortfall. Never substitute receipt/trace gas for a required fresh estimate.
 
-The source inventory is 193 Python files / 2,165 named definitions / 282 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/wallet-cards-20261127/FUNCTION_INVENTORY.json) includes the wallet-read/bundle changes; [the current anonymous-code inventory](../evidence/wallet-cards-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
+The source inventory is 193 Python files / 2,174 named definitions / 282 lambdas. Frozen Solidity maps remain 61 project sources / 39 dependencies / four build controls and 1,021 ABI rows. The workload plan covers 187 scenario classes with service partitions; this is an obligation map, not dynamic full coverage. The [current source-bound inventory](../evidence/wallet-moving-head-20261127/FUNCTION_INVENTORY.json) includes the wallet-read/bundle changes; [the current anonymous-code inventory](../evidence/wallet-moving-head-20261127/ANONYMOUS_CODE_INVENTORY.json) binds its exact source and line locations without claiming execution coverage. Tight EIP-170/initcode headroom remains a constraint; source size gates are not real constructor/provider approval.
 
 ## Card and history request-cost reduction
 
@@ -88,16 +88,75 @@ are in the evidence index; original failures are not relabelled.
 
 Final source-scoped results and preserved failures are indexed in the
 [card/history evidence](../evidence/wallet-cards-20261127/INDEX.json).
-Full normal1000-NFT/lineage/provider/concurrent/moving-chain acceptance remains
-separate. CWR09 records a confirmed moving-head availability gap: separate latest
-NFT and earnings GETs can observe different confirmed hashes. Preserve the
-current exact-match check; a fixed-block capability needs separate qualification.
+Full normal1000-NFT/lineage/provider/concurrent acceptance remains separate.
+The subsequent CWR09 work below fixes the old latest-NFT/history race through an
+explicit fixed-block capability; its finite moving-head proof is not sustained
+provider or maximum-workload acceptance.
 
 All existing25s/1024logical/2048POST/1MiB,120s freshness,86400s history and
 financial/helper/transaction limits remain. Matching new checkpoint/review/config
 pins are required; source publication changes no site, service, old checkpoint,
 journal, signer or paused heartbeat. The pure keeper helper's hash changes but
 not source13/19 membership: keep original packages with their original release.
+
+## Coherent cards while confirmed blocks advance
+
+Against contract baseline `c0dba1c5` and website baseline `cccaa5fb`, CWR09 now
+uses additive `fixed_block_nft_view_profile:1` only for accounting7 with both
+reviewed ownership and earnings history. New GET detail and earnings routes
+accept the same canonical decimal block number and exact nonzero lowercase
+hash. Both reuse the original complete financial bodies. Default/latest paths
+remain unchanged; unknown advertised versions or a failed fixed route never
+silently become latest data. Separate fresh transaction preparation is unchanged.
+
+Every read retains live chain/deployment, exact expected hash, confirmation,
+timestamp and final proof; the original120-second expiry never restarts. The
+full86400-second history and exact whole-unit/per-owner/current-currency books
+stay. The website distinguishes NFT-specific provenance from the existing
+earnings provenance shape. Only request-stage429/503 may show history unavailable
+after fresh proof; HTTP200 wrong anchors/currency books, cancellation, reorgs,
+lost depth or expiry reject the read. Signer and public configurations stay exact.
+
+Four NEW backend methods pass across4+2+1 staged invocations. Initial fixture
+failures are preserved: missing mintEndRevision data, a reassigned test-clock
+callable and indexer-progress metadata expected to stay static. Corrections only
+change those test seams; HTTP/worker passes were not repeated. The final literal
+block100 transfer and7-unit royalty claim are visible only in the new block:
+fixed99 preserves the old owner/unclaimed7 and complete DTOs except explicitly
+asserted head110→111 and four indexer_next_block100→101 metadata paths. Financial
+body/default AST equivalence is independently recorded. Five NEW website
+methods pass on their first run, using original source10 DTOs/native proofs with
+declared head/activity/wallet-assembly seams. No unchanged suite/body reran.
+
+One actual Ubuntu normal F6/32-NFT/65-royalty-currency/66-descriptor wallet plus
+eight-card composition completes **84.262s**,36GET/381direct RPC.
+All NFT/history reads remain459 while genuine confirmed heads become460/461.
+The first history succeeds with indexer_next460, deliberately behind the new
+head; normal one-header catchups then reach461/462. The second history remains
+459 even when the database is ahead. The browser stays GET/read-RPC only; a
+separate pinned operator mines exactly two empty UTC blocks and indexes them.
+All96 independent monetary reads, eight card comparisons, complete raw totals
+and final canonical/identity/freshness checks finish. The unchanged fixture
+uses one API confirmation; this is not the keeper's12-confirmation qualification.
+
+Actual final snapshot age is **114.514s/120s**, leaving only **5.486s**.
+Approximately30.25s of initial lab-head age precedes the consumer run. Preserve
+this thin finite margin; do not infer36s of age headroom from elapsed time or
+rerun unchanged source to manufacture a better result. Actual providers,
+1000-NFT/lineage, recent-window boundary and sustained concurrent operation
+remain open. Original income predates this day's window; empty heads are not
+new income. Constructor, prices, market depth and all transaction limits retain
+their original controlled scopes.
+
+New source-bound schema2 checkpoint construction separately passes3098logical/
+6194POST/4.867401s. The122-file runtime closure and26-file website map remain
+explicit; old source/checkpoint/configuration bytes are not relabelled. An outer
+capture CLI's missing mover selector was corrected before that stage, without a
+product/controller change. Final dumpState(false) is CURRENT-account preservation
+only under unchanged caps, not an archive recovery snapshot; the original full
+archive input remains retained. The [machine evidence](../evidence/wallet-moving-head-20261127/INDEX.json)
+owns exact results, independent reconstruction and final123-state/host checks.
+Publication adopts no service, site, checkpoint, journal, signer or paused heartbeat.
 
 ## Markets, prices and execution
 

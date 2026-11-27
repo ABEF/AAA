@@ -88,13 +88,16 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
             protocol = self.path == '/v1/protocol'
             readiness = self.path == '/v1/mint-readiness'
             earned = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})/earnings', self.path)
+            fixed = re.fullmatch(r'/v1/nfts/(0|[1-9][0-9]{0,77})(/earnings)?/at/(0|[1-9][0-9]{0,18})/(0x[0-9a-f]{64})', self.path)
             collection_earnings = self.path == '/v1/earnings'
             collection = re.fullmatch(r'/v1/collection/(0|[1-9][0-9]{0,15})/(0|[1-9][0-9]{0,2})', self.path)
-            if not match and not wallet and not wallet_page and not summary and not wallet_earnings and not wallet_view and not aggregate and not protocol and not readiness and not earned and not collection_earnings and not collection:
+            if not match and not wallet and not wallet_page and not summary and not wallet_earnings and not wallet_view and not aggregate and not protocol and not readiness and not earned and not fixed and not collection_earnings and not collection:
                 self._json(404, {'error': 'unknown_endpoint'})
                 return
             try:
-                identifier = token_id((match or earned)[1]) if match or earned else address((wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate)[1]) if wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate else None
+                identifier = token_id((match or earned or fixed)[1]) if match or earned or fixed else address((wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate)[1]) if wallet or wallet_page or summary or wallet_earnings or wallet_view or aggregate else None
+                if fixed and (not 1 <= int(fixed[3]) < 1 << 63 or int(fixed[4], 16) == 0):
+                    raise ValueError('Invalid fixed NFT snapshot')
                 cursor = wallet_page or summary or wallet_earnings or wallet_view
                 if cursor and int(cursor[3]) % 16:
                     raise ValueError('Invalid summary cursor')
@@ -105,11 +108,14 @@ def handler(projection: Projection, preparer=None) -> type[BaseHTTPRequestHandle
                 if collection and int(collection[2]) % 16:
                     raise ValueError('Invalid collection cursor')
             except ValueError:
-                self._json(400, {'error': 'invalid_cursor' if collection or wallet_page or wallet_view or aggregate else 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
+                self._json(400, {'error': 'invalid_snapshot' if fixed else 'invalid_cursor' if collection or wallet_page or wallet_view or aggregate else 'invalid_token_id' if match or earned else 'invalid_wallet_address'})
                 return
             try:
                 self.begin_work()
-                if aggregate:
+                if fixed:
+                    method = projection.earnings_at if fixed[2] else projection.nft_at
+                    result = method(identifier, int(fixed[3]), fixed[4])
+                elif aggregate:
                     result = projection.wallet_aggregate(identifier, int(aggregate[2]), int(aggregate[3]))
                 elif collection:
                     result = projection.collection(int(collection[1]), int(collection[2]))

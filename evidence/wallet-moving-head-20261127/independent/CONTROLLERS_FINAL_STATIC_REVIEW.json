@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "kind": "independent_final_c838_controller_review",
+  "complete": true,
+  "FREEZE_sha256": "8c96ab194d5717965aa5e33b51bccd9d3f7b6097ca8bc8706764c11bd3499fa2",
+  "primary_sha256": "c3aa609410d82403b343537f1c0914580f8139500047cf2731553e11c00e651c",
+  "pipeline_sha256": "87588b62b077c35ad4808527589ae302c6a641a789772e97d0772f47c6ce9804",
+  "final_capture_sha256": "f03dcbbda93c903471c830bf1bbb137f2af77f9760e92adbd73ef4f5ee7765d3",
+  "closed_bundle_sha256": "74558943ab7e6ca3cc72c00e15ca2379ebbb183ff8a8f49c0a43939e61ad2949",
+  "source_runtime_files": 122,
+  "website_files": 26,
+  "semantic_positive_archive_admission_required_before_stages": true,
+  "mover_READY_fences_own_node_invocation_source_and_bound_config": true,
+  "mover_and_Node_UID65534": true,
+  "micro_stages_not_requested_for_this_qualification": true,
+  "GET_only_loopback_services": true,
+  "new_own_units_only_stop_cleanup": true,
+  "final_snapshot_dump_false_current_state_not_archive_recovery": true,
+  "final_actual_creation30_31_numeric_and_canonical_proofs_retained": true,
+  "final_full123account_equality_guard": true,
+  "original_archival_input_not_modified": true,
+  "website_README_AGENTS_notes_already_applied_and_hash_verified": {
+    "README.md": "2ab0b3dbd81276a2b41794945f10ba22fcd678b57db68968134212096b9582b3",
+    "AGENTS.md": "6757567ef9985f5031fb6a3b9fad548d34b0dcd76f9a49ed10309b67e7e622da"
+  },
+  "review_new_RPC_or_tests": 0,
+  "production_approved": false
+}

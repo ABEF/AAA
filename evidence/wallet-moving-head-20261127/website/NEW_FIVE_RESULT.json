@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "complete": true,
+  "new_test_bodies_expected": 5,
+  "unchanged_suites_or_bodies_selected": 0,
+  "source_before": {
+    "deployment-api.js": "efaff24b794c9976e23501027e58c4d786276d2ec2d6a7c1cb0b1ccb14549324",
+    "tests/fixed-block-cards.test.mjs": "ed25ae2c990903dbbfb99538317d3f0eadea05ae0b91ec75af3ceb179c1af6db",
+    "tests/helpers/source10-api-fixture.mjs": "e2b1911001391890926ceaba28e455fad5ae7551d33a12866376445067ad5e92",
+    "tests/fixtures/source10-api.json": "4b59be5ccd330694912443e99ad4c081c54a9754bd66661eac2c20ca423abbc2",
+    "package.json": "369e102d5e9f1f86b9d4eb6fddf417a9d2a4bc4774396f58e210a7e83ed02d3e",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "source_after": {
+    "deployment-api.js": "efaff24b794c9976e23501027e58c4d786276d2ec2d6a7c1cb0b1ccb14549324",
+    "tests/fixed-block-cards.test.mjs": "ed25ae2c990903dbbfb99538317d3f0eadea05ae0b91ec75af3ceb179c1af6db",
+    "tests/helpers/source10-api-fixture.mjs": "e2b1911001391890926ceaba28e455fad5ae7551d33a12866376445067ad5e92",
+    "tests/fixtures/source10-api.json": "4b59be5ccd330694912443e99ad4c081c54a9754bd66661eac2c20ca423abbc2",
+    "package.json": "369e102d5e9f1f86b9d4eb6fddf417a9d2a4bc4774396f58e210a7e83ed02d3e",
+    "browser-wallet.js": "c8d9b9a96fb815be497e914e7f3054f3cd39bade73870396e36199495f07b106",
+    "deployment-config.js": "82a32fe9d60df516babe8df67a79649703360a38aa9e467e9b9f84626690cef2",
+    "integration-config.js": "527595d34923055488968ec470e7ea0d2333fab9ee5fb95d07c294701b188300"
+  },
+  "sources_unchanged": true,
+  "runs": [
+    {
+      "command": [
+        "node",
+        "--check",
+        "deployment-api.js"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.11000000000058208,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--check",
+        "tests/fixed-block-cards.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.07800000000133878,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-concurrency=1",
+        "tests/fixed-block-cards.test.mjs"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.0309999999954016,
+      "stdout_sha256": "05733d8c8ad239bf4596bd2f4e6a8c0025047260c658e288961340be0e26a555",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "public_deployment_signing_service_actions": 0
+}

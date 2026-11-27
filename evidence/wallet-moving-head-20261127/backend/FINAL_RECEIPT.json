@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "kind": "CWR09 fixed NFT and earnings anchors backend final scope",
+  "complete": true,
+  "captured_utc": "2026-11-27T22:14:39.543215+00:00",
+  "source_sha256": {
+    "frontend_api/service.py": "5726b6fb76d30d3344d32852b84a178ae4767f7cc2dc3a8f31001cfc37b9074b",
+    "frontend_api/earnings.py": "54f5846ffb63e19f59fe17f393acf66f01f9ad2c163b056aa28eaa151a1bb0af",
+    "frontend_api/server.py": "05022f0f105f161e7191ff2b5d0077134099f58b3705f262758ab3ca64c674f3",
+    "frontend_api/worker.py": "7e0962a7dac4d07b28e56908c9f0baa8d701286f43888b9532270fc47e851f3b",
+    "config/nginx/popl-api-locations.conf": "93d6ad8f83e187f6973bb0d5be2e87943b37366468429d14ff13f2b95023a744",
+    "tests_python/test_fixed_nft_anchors.py": "3cf925edbb9779980d9465957b15b3569e12e1f663a0291cb4d8d04b7e46a613"
+  },
+  "distinct_NEW_methods": 4,
+  "method_invocations": 7,
+  "unchanged_test_bodies_rerun": 0,
+  "passing_stages": {
+    "focused-001": [
+      "test_http_and_nginx_routes_accept_only_exact_fixed_anchor_grammar",
+      "test_worker_child_client_and_pool_preserve_exact_fixed_inputs"
+    ],
+    "focused-002": [
+      "test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks"
+    ],
+    "focused-003": [
+      "test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block"
+    ]
+  },
+  "retained_initial_NONPASS": [
+    "focused-001 missing controlledfixture mintEndRevision getter and reassigned testclock seam",
+    "focused-002 required explicit live indexer cursor100to101 metadata normalization"
+  ],
+  "production_defect_inferred_from_these_fixture_refusals": false,
+  "source_default_AST_review_sha256": "69abc677cb5ac81b910886f79e41a6135fa1268e71b0e7c706b4951aa4942587",
+  "final_production_sources_unchanged_since_review_and_first_run": true,
+  "fixture_scope": "Controlled exact7 ABI/header/clock plus actual SQLite, checkpoint builder/admission, history/replay and detail/earnings bodies; literal new100 transfer/payout with two versioned financial getter replies. Loopback HTTP and in-process worker dispatch checks. Not normalF6/EVM/provider/physical worker-process qualification.",
+  "capability": "fixed_block_nft_view_profile:1 only accounting7 with configured full history and earnings",
+  "routes": [
+    "/v1/nfts/{id}/at/{block}/{hash}",
+    "/v1/nfts/{id}/earnings/at/{block}/{hash}"
+  ],
+  "guards_retained": [
+    "integer1..2^63-1 and lowercase nonzero exacthash",
+    "current chain/deployment ancestry/confirmed safe head",
+    "requested exact canonical number/hash",
+    "old timestamp age/120s expiry incl exactboundary",
+    "live final header/deployment/depth/chain/age checks",
+    "per-request25s1024calls2048POST1MiB/cache64KiB8MiB and full86400 history"
+  ],
+  "receipts": {
+    "cache-wallet-fixed-anchor-20261127/focused-001/RESULT.json": {
+      "bytes": 1438,
+      "sha256": "feda0388d4d52b5f896cae80a4469c10e9b332b452748c2feb1363b3a18a0d83"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-001/test.log": {
+      "bytes": 9107,
+      "sha256": "9e08962d3794504c5dcb2578e71f57a17b50036ce7ac364dab76e688b1e785a1"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-001/test-source.py": {
+      "bytes": 12950,
+      "sha256": "8c7cbdffc1b7b5996a5cee33f89d5c072de5d8b447d3691e6b8da1c51806d786"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-002/RESULT.json": {
+      "bytes": 1243,
+      "sha256": "334f5b64242b973b354030caf871169f2a6638ddb45db544986a68485f218613"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-002/test.log": {
+      "bytes": 1488,
+      "sha256": "b927436cabe656b5ec9fc2d0be1b3ad4b49e97add603e9cbb4302dab0d4dab3a"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-002/test-source.py": {
+      "bytes": 13048,
+      "sha256": "8c19ba9891b8923eae68bcdaf306ab669e98a0f422c779e6800f56999e6136d1"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-003/RESULT.json": {
+      "bytes": 1432,
+      "sha256": "ad705e1711980bde5de66cad7707b1128daa212f58e47698aaee643b06b8e3c6"
+    },
+    "cache-wallet-fixed-anchor-20261127/focused-003/test.log": {
+      "bytes": 334,
+      "sha256": "453b8f972a38c3492848ab5b65d4c4bc458f4eff2717fce1432588bbf712d113"
+    },
+    "cache-wallet-fixed-anchor-20261127/SOURCE_REVIEW.json": {
+      "bytes": 2249,
+      "sha256": "69abc677cb5ac81b910886f79e41a6135fa1268e71b0e7c706b4951aa4942587"
+    }
+  },
+  "production_approved": false
+}

@@ -46,10 +46,15 @@ gate with starts at least one second apart, one active request, at most 32 queue
 and no automatic retry; previous two-page concurrency is not a promise of parallel
 HTTP execution.
 
-The8-card visual page remains unchanged. Individual NFT cards use independently
-confirmed latest snapshots because their endpoint has no fixed-block selector;
-they are not claimed to share the ownership inventory block. Wallet totals and
-history retain complete fixed-block checks. The [earlier 69-check source
+The8-card visual page remains unchanged. With advertised integer
+`fixed_block_nft_view_profile:1`, both detail and earnings use the captured wallet
+block number AND hash. Every returned card shares the inventory anchor even as
+newer blocks arrive. No new snapshot age is granted; native/metadata, ownership,
+accounting, complete history and final canonical/depth/120s checks remain. Only
+request-stage429/503 can make earnings honestly unavailable after live proof;
+wrong successful data is fatal and a failed advertised route never falls back.
+Omitted capability retains the earlier independently latest card path. Wallet
+totals and history retain their complete fixed-block checks. The [earlier 69-check source
 record](https://github.com/ABEF/AAA/blob/fdd599c7698d0e1c0709a4a8b50130e5557ba508/reports/ownership-paging-20261121/REVIEW.md) retains its original scope;
 the current compact wire is covered separately above. Neither is public
 configuration, provider/hosting or financial-load approval.
@@ -89,8 +94,9 @@ backend NFT/earnings paths only for `wallet_read_batch:1`. The website still
 performs full native/runtime/ownership, per-card own-anchor, complete history and
 final wallet freshness verification. The current32-NFT/66-descriptor Ubuntu
 wallet plus eight-card case completes in83.708s/36GETs; this does not qualify
-1000-NFT/lineage/provider/moving-chain behavior. Separate latest card/earnings
-anchors remain CWR09; never loosen exact hash equality. No source10 signing, request pacing,
+1000-NFT/lineage/provider/moving-chain behavior. The subsequent CWR09
+fixed-block capability addresses the separate latest-card/history race; source
+and actual qualification retain their distinct scopes in the current review. No source10 signing, request pacing,
 concurrency, card count, snapshot age or partial-result policy changes.
 
 ## Wallet financial snapshot guards

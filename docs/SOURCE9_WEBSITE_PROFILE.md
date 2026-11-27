@@ -138,3 +138,17 @@ verifies ETH/ZZZ activation/growth through real unsigned consumer/API reviews,
 with explicit synthetic external depth and controlled feeds/VRF. Unmodified
 market depth failed safely. Actual market/provider/browser-wallet acceptance,
 authorities, OpenSea, hosting and independent audit remain open.
+
+## Fixed-block card history
+
+When the protocol advertises integer `fixed_block_nft_view_profile:1`, source9
+and source10 portfolio cards use the captured wallet block number/hash for both
+NFT detail and earnings. Preserve each DTO's own validation shape, exact anchors,
+complete currency/86400-second history, native ownership/LP proofs and final
+canonical/depth/120s checks. Only request429/503 may leave history unavailable
+after live proof; invalid successful data is fatal. Unknown capabilities or a
+failed advertised endpoint never fall back to latest. Omission retains the old
+latest-card path; fresh action preparation stays separate. Match the new API,
+worker, proxy, consumer and rebuilt/reviewed checkpoint before separate adoption.
+[Exact inputs](FRONTEND_API.md#fixed-block-nft-detail-and-earnings);
+[operator procedure](OPERATOR_MANUAL.md#fixed-block-card-history).

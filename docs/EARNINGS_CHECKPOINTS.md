@@ -66,6 +66,13 @@ limits and cleanup; cache misses or full capacity use ordinary hashing. The
 matching pure physical-observer helper is part of the runtime source closure;
 preserve old writer/checker releases and journals rather than rewriting pins.
 
+Fixed-block NFT/history source also requires a NEW source-matched checkpoint.
+It changes snapshot selection, not the replay engine or whole-unit books. The
+captured block may be behind the head and the Indexer; the same prefix plus full
+86400-second suffix must authenticate it. Preserve original seed/review/config
+and database bytes and use the explicit adoption procedure. Older source-bound
+checkpoints are never edited in place to satisfy the new service/earnings hashes.
+
 ## What is authenticated
 
 The operator pins the artifact's SHA-256 through the reviewed API configuration.

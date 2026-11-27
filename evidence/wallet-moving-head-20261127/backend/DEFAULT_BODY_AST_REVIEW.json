@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "kind": "CWR09 independent default-body and fixed-anchor static source review",
+  "captured_utc": "2026-11-27T22:13:34.377915+00:00",
+  "base_commit": "c0dba1c52253ac92a74aba79dbc591b695602a37",
+  "source_sha256": {
+    "frontend_api/service.py": "5726b6fb76d30d3344d32852b84a178ae4767f7cc2dc3a8f31001cfc37b9074b",
+    "frontend_api/earnings.py": "54f5846ffb63e19f59fe17f393acf66f01f9ad2c163b056aa28eaa151a1bb0af",
+    "frontend_api/server.py": "05022f0f105f161e7191ff2b5d0077134099f58b3705f262758ab3ca64c674f3",
+    "frontend_api/worker.py": "7e0962a7dac4d07b28e56908c9f0baa8d701286f43888b9532270fc47e851f3b",
+    "config/nginx/popl-api-locations.conf": "93d6ad8f83e187f6973bb0d5be2e87943b37366468429d14ff13f2b95023a744",
+    "tests_python/test_fixed_nft_anchors.py": "90ef17698fa6208b74c93f1070bc552dc18b0b798c241936981616adb5cfc57e"
+  },
+  "exact_default_AST_checks": [
+    "frontend_api/service.py:nft",
+    "frontend_api/service.py:earnings",
+    "frontend_api/service.py:_snapshot",
+    "frontend_api/service.py:_fresh",
+    "frontend_api/service.py:_finish",
+    "frontend_api/earnings.py:read",
+    "frontend_api/service.py:_nft old body identical after restoring original default snapshot expression",
+    "frontend_api/earnings.py:_read old body identical after restoring original default snapshot expression"
+  ],
+  "manual_line_review": [
+    "Current7+history+earnings capability and fixed gate match; unsupported routes refuse before chain work",
+    "block number exact int1..2^63-1, canonical lowercase nonzero hash validated before RPC",
+    "requested block in confirmed deployment range, returned number/hash exact, original live chain/deployment/canonical/fresh checks retained",
+    "captured historical header adds own120s expiry; final _finish unchanged including canonical, chain, depth, age; no latest fallback",
+    "HTTP/Nginx fixed grammar additive, GET-only, worker client/pool/child preserve exact tuple",
+    "original financial/replay/currency/LP/ownership/paid allocation body retained; full86400 and budget/cache/transaction safeguards unchanged"
+  ],
+  "new_test_bodies_in_this_review": 0,
+  "network_calls_in_this_review": 0,
+  "production_approved": false
+}

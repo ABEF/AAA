@@ -1,0 +1,100 @@
+test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block) ... ERROR
+test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) ... 
+  test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) (route='nft_at', fault='age_exact') ... FAIL
+  test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) (route='earnings_at', fault='age_exact') ... FAIL
+test_http_and_nginx_routes_accept_only_exact_fixed_anchor_grammar (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_http_and_nginx_routes_accept_only_exact_fixed_anchor_grammar) ... ok
+test_worker_child_client_and_pool_preserve_exact_fixed_inputs (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_worker_child_client_and_pool_preserve_exact_fixed_inputs) ... ok
+
+======================================================================
+ERROR: test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 84, in test_actual_checkpoint_card_and_earnings_keep_old_owner_and_payout_after_new_block
+    self.assertEqual(p.protocol()['fixed_block_nft_view_profile'], 1)
+                     ^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 432, in protocol
+    window = sale_window(self,header,block)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\mint_readiness.py", line 22, in sale_window
+    revision = p._uint('royalties', 'mintEndRevision()', block=block)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 315, in _uint
+    return int(self._call(self.contracts[role].address, signature, *args, block=block)[0], 16)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 296, in _call
+    raw = self.rpc.call('eth_call', [{'to': target, 'data': data}, block])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 104, in call
+    result = self.inner.call(method, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_earnings_checkpoints.py", line 57, in call
+    return self.inner.call(method,params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_frontend_api.py", line 138, in call
+    return self.responses[(tx['to'], tx['data'])]
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_portfolio_price_outage.py", line 31, in __getitem__
+    return super().__getitem__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: ('0x0000000000000000000000000000000000000005', '0x24487d10')
+
+======================================================================
+FAIL: test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) (route='nft_at', fault='age_exact')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 184, in test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks
+    getattr(p,route)(1,99,HASH)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 631, in nft_at
+    return self._nft(identifier, snapshot=self._snapshot_at(block_number, block_hash))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 179, in body
+    raise AssertionError('Unverified fixed result was released')
+AssertionError: Unverified fixed result was released
+
+======================================================================
+FAIL: test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks (tests_python.test_fixed_nft_anchors.FixedNFTAnchorTests.test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks) (route='earnings_at', fault='age_exact')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 184, in test_exact_anchor_inputs_and_live_final_proofs_fail_closed_without_leaks
+    getattr(p,route)(1,99,HASH)
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\zzz_ops\work_budget.py", line 93, in bounded
+    return function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\service.py", line 614, in earnings_at
+    return self.earnings_history.read_at(token_id(identifier), block_number, block_hash)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\frontend_api\earnings.py", line 156, in read_at
+    return self._read(identifier, snapshot=self.p._snapshot_at(block_number, block_hash))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1204, in _execute_mock_call
+    result = effect(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ali\Desktop\2.x holas\Oto\zzz-protocol-v2-reviewed\zzz-protocol-v2\tests_python\test_fixed_nft_anchors.py", line 179, in body
+    raise AssertionError('Unverified fixed result was released')
+AssertionError: Unverified fixed result was released
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.057s
+
+FAILED (failures=2, errors=1)

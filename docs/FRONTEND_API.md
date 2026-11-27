@@ -678,6 +678,55 @@ its1,040 royalty claimable calls alone cannot fit. Keep that workload open and
 retain all limits.83 NEW JS methods pass across disjoint stages; no old suite
 or previously passing method is rerun. Backend source and API wire are unchanged.
 
+## Fixed-block NFT detail and earnings
+
+For accounting7 with both reviewed ownership and earnings history configured,
+`/v1/protocol` additionally advertises integer `fixed_block_nft_view_profile:1`.
+This is an output capability, not a configuration flag or a new contract profile.
+Omission retains the existing latest endpoints. Clients must reject unknown
+advertised values and must not fall back to latest if an advertised route fails.
+
+Capture one confirmed `provenance.block_number` and `block_hash` from the wallet
+read. Keep that pair for all cards and their history:
+
+| Read | Exact GET path |
+| --- | --- |
+| NFT detail | `/v1/nfts/{id}/at/{block}/{hash}` |
+| NFT earnings | `/v1/nfts/{id}/earnings/at/{block}/{hash}` |
+
+`id` is a canonical decimal uint256. `block` is canonical decimal,1 through
+2^63-1, at or after deployment and no later than the currently confirmed block.
+`hash` is lowercase `0x` plus64 hexadecimal characters, nonzero, and must match
+that block exactly. Do not substitute a newer head, a hash at the same height
+after a reorg, leading-zero numbers, a query parameter or an unconfirmed block.
+The DTO shapes and all financial calculations are unchanged. NFT provenance
+includes native-accounting flags; earnings retains its own existing provenance
+shape. Consumers compare their common block/hash/time/configuration fields and
+still apply each response's separate identity/accounting validation.
+
+Each call rechecks live chain/deployment, confirmation depth, the exact canonical
+hash, timestamp and final state. Contract calls continue using
+[`blockHash` with `requireCanonical:true`](https://eips.ethereum.org/EIPS/eip-1898).
+The original120-second expiry is never restarted by another request or new head.
+Retained raw getters/digests stay request-local and all25s/1024logical/2048POST/
+1MiB/cache/helper bounds remain. History must cover the captured block; it may
+lag newer blocks or already contain later blocks without changing this view.
+The full86400-second earnings window ends at the captured timestamp.
+
+Source9/source10 portfolios use the advertised capability for both reads. Only
+request-stage429/503 may leave history explicitly unavailable, after live anchor
+checks. A successful response with a wrong anchor, identity or currency book is
+an integrity failure. Cancellation, reorg, lost depth or expiry reject results.
+No old or partial earnings total becomes a complete total. A refreshed view
+captures a new block; transaction preparation always performs its own fresh
+read and never treats a displayed historical card as spending authority.
+
+Adopt matching API/server/worker/proxy and website source, then independently
+rebuild/review/re-pin a NEW matching checkpoint. Preserve old releases, config,
+checkpoint/review/DB bytes and journals. Publication changes no running service,
+site, signer or chain. See the [operator procedure](OPERATOR_MANUAL.md#fixed-block-card-history)
+and [current review](../reports/CURRENT_REVIEW.md).
+
 ## Accounting7 policy and exact LP observation
 
 Fresh reads explicitly require protocol_policy_version1 and the reviewed bound

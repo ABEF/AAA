@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "complete": true,
+  "kind": "authorized_local_CWR09_website_source_apply",
+  "baseline": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+  "files": {
+    "deployment-api.js": {
+      "old": "0224683bb4b042a2f48012dd50023ad689c520abc62bfe0d30e5c6c7b041936a",
+      "new": "efaff24b794c9976e23501027e58c4d786276d2ec2d6a7c1cb0b1ccb14549324"
+    },
+    "package.json": {
+      "old": "20535fa7d47a4efacd4046bb217dacf010b242aa530b0e4d9155837690b67ec1",
+      "new": "369e102d5e9f1f86b9d4eb6fddf417a9d2a4bc4774396f58e210a7e83ed02d3e"
+    },
+    "tests/fixed-block-cards.test.mjs": {
+      "old": null,
+      "new": "ed25ae2c990903dbbfb99538317d3f0eadea05ae0b91ec75af3ceb179c1af6db"
+    }
+  },
+  "signer_and_public_configurations_unchanged": true,
+  "build_or_site_service_chain_adoption": false,
+  "tests_executed": 0
+}

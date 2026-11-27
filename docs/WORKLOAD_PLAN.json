@@ -2,7 +2,7 @@
   "schema": 1,
   "purpose": "Whole-project workload/function/state inventory and verification plan; inventory completeness is never dynamic coverage or proof of all possible market states.",
   "date": "2026-11-27",
-  "source_baseline": "0510bd7c798c2d93cd64805a7704497ee7681162",
+  "source_baseline": "c0dba1c52253ac92a74aba79dbc591b695602a37",
   "trusted_build_record": {
     "path": "reports/activation-final-six-20261118/build/final/normal-size-evidence.json",
     "sha256": "4c321ea3783eaede93bdf39d8de77254b5cdf3e99ea4126d726134c8cd4ceac2"
@@ -716,13 +716,15 @@
         "frontend_api/canonical_cache.py",
         "frontend_api/earnings.py",
         "frontend_api/portfolio_v6.py",
-        "keeper/compound_policy.py"
+        "keeper/compound_policy.py",
+        "frontend_api/server.py",
+        "frontend_api/worker.py"
       ],
       "cases": [
         "0/1/16/17/999/1000holdings andfullwidthIDs",
         "all1000oneowner versusmixedwallets/lifecycle",
         "forged/missingowner orcanonicalcount",
-        "sameblock/hash/config/digest allpageassembly",
+        "sameblock/hash/config/digest allpageassembly; explicitfixed_block_nft_view_profile1 bindsNFT+earnings tosamecapturednumberANDhash,legacyabsentunchanged,unknown/failingadvertisedrouteneverlatestfallback,caponlyexact7withbothhistoryprofiles; blockadvanceswithIndexerlag/ahead,postanchortransfer/claim/growth,wronghash/future/predeploy/depth/reorg/strict120/cancel; only429503honesthistoryunavailableafterliveproof",
         "incomplete/duplicate/outoforder/finalpage alone/stale/reorg",
         "explicitprofile2 separates16NFTownership from4currencyfullwallet earnings; oldprofile1unchanged",
         "constructoronlySTATICCALL fixedselectors:3NFT/4currency,50kplain/500kLP/1Mroyalty within24M total,returndata/initcode/artifact bindings; coldF6 scalar reference includes intrinsic/cold costs; nobroadcast/stateoverride",

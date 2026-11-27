@@ -1,0 +1,1813 @@
+{
+  "schema": 1,
+  "complete": true,
+  "actual_native_profile": "Source10Profile",
+  "clock": "Real Date.now",
+  "mode": "portfolio",
+  "NFTs": 32,
+  "descriptors": 66,
+  "moving_head_controls": [
+    {
+      "actual_confirmations": 1,
+      "block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "block_number": 459,
+      "complete": true,
+      "confirmed_after": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "elapsed_seconds": 0.014024659991264343,
+      "indexer_HTTP_posts": 0,
+      "indexer_after": 460,
+      "indexer_before": 460,
+      "indexer_logical_reads": 0,
+      "kind": "mine_without_index",
+      "observed_latest_after": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "observed_latest_before": {
+        "hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+        "number": 459,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818317
+      },
+      "schema": 1,
+      "sequence": 1,
+      "token_id": "1248574744688489714149029109882129484583802244734403215086775583671941821735",
+      "consumer_control_elapsed_ms": 45.68514000000141
+    },
+    {
+      "actual_confirmations": 1,
+      "block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "block_number": 459,
+      "complete": true,
+      "confirmed_after": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "elapsed_seconds": 0.012468807399272919,
+      "indexer_HTTP_posts": 12,
+      "indexer_after": 461,
+      "indexer_before": 460,
+      "indexer_logical_reads": 6,
+      "kind": "index_after_earnings",
+      "observed_latest_after": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "observed_latest_before": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "schema": 1,
+      "sequence": 2,
+      "token_id": "1248574744688489714149029109882129484583802244734403215086775583671941821735",
+      "consumer_control_elapsed_ms": 20.966919000005873
+    },
+    {
+      "actual_confirmations": 1,
+      "block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "block_number": 459,
+      "complete": true,
+      "confirmed_after": {
+        "hash": "0x22ded4d662152cadefd90a87192b3272d926cace3a5d54e1b7577ec550ff5964",
+        "number": 461,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818414
+      },
+      "elapsed_seconds": 0.022242870181798935,
+      "indexer_HTTP_posts": 12,
+      "indexer_after": 462,
+      "indexer_before": 461,
+      "indexer_logical_reads": 6,
+      "kind": "mine_and_index",
+      "observed_latest_after": {
+        "hash": "0x22ded4d662152cadefd90a87192b3272d926cace3a5d54e1b7577ec550ff5964",
+        "number": 461,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818414
+      },
+      "observed_latest_before": {
+        "hash": "0x1ac1ddbe561ae22d981ffd29d11059a90577c2ebcb52c991c77f62fd6fb87d21",
+        "number": 460,
+        "stateRoot": "0x40e48380ea06335896425fc2cff4f06e3622634e93c9f762e31c738de55ea675",
+        "timestamp": 1795818395
+      },
+      "schema": 1,
+      "sequence": 3,
+      "token_id": "13348836711736148526137335726910761689052251122840905272510795646688034120258",
+      "consumer_control_elapsed_ms": 41.22012100000575
+    }
+  ],
+  "actual_confirmed_head_advanced": true,
+  "all_cards_original_wallet_anchor": true,
+  "final_snapshot_age_ms": 114514,
+  "final_proof_elapsed_ms": 84249.736547,
+  "full_window_seconds": 86400,
+  "qualified_card_count": 8,
+  "card_checks": [
+    {
+      "token_id": "1248574744688489714149029109882129484583802244734403215086775583671941821735",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "2462063339267162924893571595634385456228423975503804898077315330446302284252",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "4518497116663416470607628045387046340206942523995607831880733125894132541881",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "10516182421747050759276478612144244254866097822968721029546271566516055043192",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "13348836711736148526137335726910761689052251122840905272510795646688034120258",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "16882515172615937576241688667802215726124669151437896759329054964477900678677",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "20537203028217026507840269981246229606259556371061208472122271330785543499501",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    },
+    {
+      "token_id": "23070453189890847373298479860611567682997610352003412239298571443718285396299",
+      "own_block_number": 459,
+      "own_block_hash": "0x9f35cafbbf3119bd922df29e1aaa6b528005a77aeb6b1850d500cb792bf63731",
+      "observed_same_wallet_anchor": true,
+      "full86400": true,
+      "raw66currencies": true,
+      "USD_completeness_claimed": false,
+      "independent_native_and_LP_compared": true
+    }
+  ],
+  "card_anchor_policy": "Explicit fixed capability: every NFT detail and earnings report uses the original captured wallet number, hash and timestamp; new heads do not recenter the read.",
+  "lp_available": true,
+  "independent_lp_usd_18": "3502849811452133439400",
+  "independent_claimable_eth_wei": "3200100046857521884",
+  "all_time_raw": {
+    "lp_individual": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "88930540019482"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "0"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "0"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "0"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "0"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "0"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "0"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "0"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "0"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "0"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "0"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "0"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "0"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "0"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "0"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "0"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "0"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "0"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "0"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "0"
+      }
+    ],
+    "lp_collective": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "11116317502402"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "0"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "0"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "0"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "0"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "0"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "0"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "0"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "0"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "0"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "0"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "0"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "0"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "0"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "0"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "0"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "0"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "0"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "0"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "0"
+      }
+    ],
+    "royalties": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "3200000000000000000"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "32000000000000000000"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "32000000"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "32000000"
+      }
+    ]
+  },
+  "last24h_raw": {
+    "lp_individual": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "0"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "0"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "0"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "0"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "0"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "0"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "0"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "0"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "0"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "0"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "0"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "0"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "0"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "0"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "0"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "0"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "0"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "0"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "0"
+      }
+    ],
+    "lp_collective": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "0"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "0"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "0"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "0"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "0"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "0"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "0"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "0"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "0"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "0"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "0"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "0"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "0"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "0"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "0"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "0"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "0"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "0"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "0"
+      }
+    ],
+    "royalties": [
+      {
+        "asset": "0x0000000000000000000000000000000000000000",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0267fdb474875a3a72369632fe2f4f9a97209db1",
+        "raw": "0"
+      },
+      {
+        "asset": "0x095b90a92ac7f949adbb03514763c1727d265d39",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0cc0ea9c838c3c26438cf04f6f5c764c743fac9a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x0d6246fb75f4885f592bb96fee14de7ef5f95e52",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1308cced95bdbcf2fcb2c0587685f39290422263",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1ab9c8f65bdf958bda7f67fcc694f0f297e61f67",
+        "raw": "0"
+      },
+      {
+        "asset": "0x1bc6e6e4506f6cde613f9266f9b1a3935e01936c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x2a8e68b3a0f1bd4fd2baa4fb3c1b499ae3d3eb45",
+        "raw": "0"
+      },
+      {
+        "asset": "0x30bb811de187ba2e59a43d394e25ddf7e02e4188",
+        "raw": "0"
+      },
+      {
+        "asset": "0x33e97618aaaf9f6141f60608e7dfc8d112bd1e08",
+        "raw": "0"
+      },
+      {
+        "asset": "0x35b9e601f691fc0b1ca65042fd4a1c6bf16e2b3d",
+        "raw": "0"
+      },
+      {
+        "asset": "0x382376aba766ded8b742bb597dd80f4a65c0e9d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4401d0198ff5a3c81027da711a47fe8354e04b82",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c2a954009a521a2399f84c9bd418758c50859be",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4c618e62908c809cd9353bda7670b39d5b23ca4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x4d8a3642716ed20192feaacc9e93eabebc568f28",
+        "raw": "0"
+      },
+      {
+        "asset": "0x552043649dcaedea3e3177dfac519f86c2004581",
+        "raw": "0"
+      },
+      {
+        "asset": "0x5ae81cec6352b3fb6224888d065898cde7ab13e7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x61140b09068216570fce4cc02e99f84ecb6c2cfb",
+        "raw": "0"
+      },
+      {
+        "asset": "0x66312a3908d923ffb953030e22b5926e28dcf576",
+        "raw": "0"
+      },
+      {
+        "asset": "0x68b69a639b8954cf204b6423612ed373cf491a87",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7254bc702259e9239c686c5cc0d45e582b9d605c",
+        "raw": "0"
+      },
+      {
+        "asset": "0x728fee984472e05b6695889d3cbfe6e6b230dc18",
+        "raw": "0"
+      },
+      {
+        "asset": "0x76573d50133c415b792688943fbd02a5a2498f01",
+        "raw": "0"
+      },
+      {
+        "asset": "0x774955910de54ac19ee92d6310b810dfb4a7c56a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x77e02ffc87f0473bc4c7b237f0e763b04a6c7322",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7dbf38976f6d3b9c529e7d9484a71898b409ee6a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x7edf3b53fca7cd9fdb8a0c4c113513c846c5e0bf",
+        "raw": "0"
+      },
+      {
+        "asset": "0x85e78f0e42950bfd484ede1d3e342f2ae5ff3c8a",
+        "raw": "0"
+      },
+      {
+        "asset": "0x886236860ca8d240ad13b643031032c02e569733",
+        "raw": "0"
+      },
+      {
+        "asset": "0x892788320ffcb2e4be32cc5a9b2ae215b441c7b7",
+        "raw": "0"
+      },
+      {
+        "asset": "0x94886f18aa4ce6c9117ad3ccbe54fd9469a815ff",
+        "raw": "0"
+      },
+      {
+        "asset": "0x99e19854ef2a925573bc1b63e592479cf92e5ddc",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9cbc7bed2de56acf69d4be5841e213e7aaa166f4",
+        "raw": "0"
+      },
+      {
+        "asset": "0x9dfd5b2614b3dc8764e54b24c52b18108a3151a5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa149d1ba0dc0de61a9c177d24488eb3126f2c6ba",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa5a627472cb451daf497a55e79c8d644db5b89d4",
+        "raw": "0"
+      },
+      {
+        "asset": "0xa805db28a016aef9cae33a5a57ed552ad74dbfc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaa736eb5a406c8985a7ff2a660edde13fc6b5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac7e7f5407851efa5543a7bb57d2a69e2e68f995",
+        "raw": "0"
+      },
+      {
+        "asset": "0xac9b69aaa09c267905c7213481c95d81d387db3a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xaf14938e9462ce3219ecad3218f10eb1bd46008c",
+        "raw": "0"
+      },
+      {
+        "asset": "0xafbc1c0938011c99611f5da1f5c81b07184458d5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb1757e3946618d609dd2ea259a01d415559e2895",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb43a97d6933108b98cfa54132542fbe218855bbe",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb45c00f1bbdece54943f7363ba2fab7466d603f9",
+        "raw": "0"
+      },
+      {
+        "asset": "0xb4f584daa90d38be65c295632ec77af571156c4a",
+        "raw": "0"
+      },
+      {
+        "asset": "0xbd53a282e17b0186261acb16b06c3446fcef2f5b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc19deaba36b28dd42fb88cf03da90da58591ad00",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc41b72c263c23f989b05afb7bcf0fa9282e3d138",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc4964ce44eaac48bcf8aa8ddc2ca5eed20f5c452",
+        "raw": "0"
+      },
+      {
+        "asset": "0xc6dde525e0ff4f634df2f9110d566d3afab1752b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xcf7cef26fcefd1d8d18ab8caa379dc4a50c61816",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd89b6da19e3c20e7777c5a691cf9dff3264e36b3",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd93d922f29f5d1a216fe89303166c87f0d0befc5",
+        "raw": "0"
+      },
+      {
+        "asset": "0xd9987e1cb72d81629d64dc947d094d77ba1be873",
+        "raw": "0"
+      },
+      {
+        "asset": "0xda8978e97de9f3e456c6f69ffd1b20e413782683",
+        "raw": "0"
+      },
+      {
+        "asset": "0xdefdf091695ecdd4b38ceabb3f9cc1e4d88e5298",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe1a006a0f9e3090cabd3a7d97a0cd528c0654843",
+        "raw": "0"
+      },
+      {
+        "asset": "0xe4def02b8be0e9af84f1af79650bf0fd45e93638",
+        "raw": "0"
+      },
+      {
+        "asset": "0xee47efec86a8604d11845ef895edd6ee72de093b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf44579b1f5a4b89c50fed430536bb987ed41f19e",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf935aaf4f1a5da6d380fbb5035a0a88bbde5b785",
+        "raw": "0"
+      },
+      {
+        "asset": "0xf97798706efe9073cbce154083adff4176ec976b",
+        "raw": "0"
+      },
+      {
+        "asset": "0xfdfb3bc77b31ae65cf951347ced9eddca7f21448",
+        "raw": "0"
+      }
+    ]
+  },
+  "api_requests": 36,
+  "rpc_requests": 381,
+  "elapsed_ms": 84262.287667,
+  "manifest_sha256": "01e719cf3e75040f89ae36bfda1eb7b0aef5ac4a4f339d91bd6765136651afd8",
+  "configuration_sha256": "fbdd2220d544d2e0f3cccd658dcae49a45fd1da92dd5ac725fe89b7eaa2547b2",
+  "signing_or_submission": false,
+  "production_approved": false,
+  "scope": "Actual isolated32NFT Source10 wallet with two genuine confirmed head advances, controlled Indexer lag/ahead and fixed original card anchors. No1000NFT, live markets, provider capacity or production/site adoption claim."
+}

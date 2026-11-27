@@ -1,0 +1,224 @@
+{
+  "schema": 1,
+  "kind": "CWR09_fixed_card_snapshots_and_actual_moving_head_proof",
+  "date": "2026-11-27",
+  "contract_baseline": "c0dba1c52253ac92a74aba79dbc591b695602a37",
+  "website_baseline": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+  "evidence": [
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/FINAL_RECEIPT.json",
+      "path": "evidence/wallet-moving-head-20261127/backend/FINAL_RECEIPT.json",
+      "bytes": 4482,
+      "sha256": "50184dcf56b200b8aedb76e8bda7268832f06f2a4010e239c33dbd773462fa3c"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/SOURCE_REVIEW.json",
+      "path": "evidence/wallet-moving-head-20261127/backend/DEFAULT_BODY_AST_REVIEW.json",
+      "bytes": 2249,
+      "sha256": "69abc677cb5ac81b910886f79e41a6135fa1268e71b0e7c706b4951aa4942587"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/backend/initial-four__RESULT.json",
+      "bytes": 1438,
+      "sha256": "feda0388d4d52b5f896cae80a4469c10e9b332b452748c2feb1363b3a18a0d83"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-001/test.log",
+      "path": "evidence/wallet-moving-head-20261127/backend/initial-four__test.log",
+      "bytes": 9107,
+      "sha256": "9e08962d3794504c5dcb2578e71f57a17b50036ce7ac364dab76e688b1e785a1"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-002/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/backend/affected-two__RESULT.json",
+      "bytes": 1243,
+      "sha256": "334f5b64242b973b354030caf871169f2a6638ddb45db544986a68485f218613"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-002/test.log",
+      "path": "evidence/wallet-moving-head-20261127/backend/affected-two__test.log",
+      "bytes": 1488,
+      "sha256": "b927436cabe656b5ec9fc2d0be1b3ad4b49e97add603e9cbb4302dab0d4dab3a"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-003/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/backend/affected-composed__RESULT.json",
+      "bytes": 1432,
+      "sha256": "ad705e1711980bde5de66cad7707b1128daa212f58e47698aaee643b06b8e3c6"
+    },
+    {
+      "source": "cache-wallet-fixed-anchor-20261127/focused-003/test.log",
+      "path": "evidence/wallet-moving-head-20261127/backend/affected-composed__test.log",
+      "bytes": 334,
+      "sha256": "453b8f972a38c3492848ab5b65d4c4bc458f4eff2717fce1432588bbf712d113"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/website/focused-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/website/NEW_FIVE_RESULT.json",
+      "bytes": 3036,
+      "sha256": "8776eafa32bd33ea3951129ccdc2313bb444c3636f77c19513e10885a20bca42"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/website/focused-001/3-stdout.log",
+      "path": "evidence/wallet-moving-head-20261127/website/NEW_FIVE_TEST.log",
+      "bytes": 733,
+      "sha256": "05733d8c8ad239bf4596bd2f4e6a8c0025047260c658e288961340be0e26a555"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/website/applied-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/website/LOCAL_SOURCE_APPLY.json",
+      "bytes": 852,
+      "sha256": "55d43af61bc2f4a995e116263a9d5fca063a552713cc094f189bbde3771a17a6"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/website/DOC_APPLIED.json",
+      "path": "evidence/wallet-moving-head-20261127/website/LOCAL_DOCUMENTATION_APPLY.json",
+      "bytes": 351,
+      "sha256": "6e7a5acd1bf4b4b3cc8e15b95668c0b680dc396dc73b3ea515182c57c06e7175"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/CAPSULE_STATIC_REVIEW.json",
+      "path": "evidence/wallet-moving-head-20261127/independent/CAPSULE_STATIC_REVIEW.json",
+      "bytes": 1403,
+      "sha256": "9fd609ed17e0b67dd30e28fb9dc6641ba4b5e5a9545f9de16fc09ba060d3540b"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/CONTROLLERS_FINAL_STATIC_REVIEW.json",
+      "path": "evidence/wallet-moving-head-20261127/independent/CONTROLLERS_FINAL_STATIC_REVIEW.json",
+      "bytes": 1497,
+      "sha256": "16be0e7afff7077869adc132f179bd014235105bc8cbd4ad689a3bb5cb124a9b"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ACTUAL_C838_INDEPENDENT_REVIEW.json",
+      "path": "evidence/wallet-moving-head-20261127/independent/ACTUAL_C838_INDEPENDENT_REVIEW.json",
+      "bytes": 3725,
+      "sha256": "01fae4f1a97641db75a9598eff263ebdce1beab5aad24959aa5a26e15e1707e0"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/archive-001/stdout.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/ARCHIVE_ADMISSION.json",
+      "bytes": 1054,
+      "sha256": "cbd4e2535c1b8064a1686d63fcc896f7519fe9b70ccf29da68a3ca9fff629acb"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/catchup-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/INDEX_CATCHUP_RESULT.json",
+      "bytes": 5077,
+      "sha256": "89b2b820be8d29b5f1e6bf248b6c65adf4a02d7e25fad8b3cea94567c83d3229"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/checkpoint-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/NEW_CHECKPOINT_RESULT.json",
+      "bytes": 3054,
+      "sha256": "29d6adff962e7365efb56c96bc9dca2061cd7424c681589ea8ecc5c63bc254eb"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/candidate-review-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/CANDIDATE_REVIEW_RESULT.json",
+      "bytes": 1277,
+      "sha256": "188067e0b35d6e50b3a0fe395ecb01128f72b8f14a3b018fe7399aac6035f8b3"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/bind-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/NEW_BINDING_RESULT.json",
+      "bytes": 1139,
+      "sha256": "2bdc83a4e07690334a3f960ed691a3417355e9b50f2631eb03ab731c653dac83"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/consumer-001/RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/MOVING_HEAD_WALLET_EIGHT_CARDS_RESULT.json",
+      "bytes": 48864,
+      "sha256": "f809145541d6c4f70263d7d9478b71e6ec4adc36d1e09458bcc69daf278eac05"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/private-artifacts-001/REQUESTS.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/COMPLETE_JOURNEY_REQUESTS.json",
+      "bytes": 67467,
+      "sha256": "3592e2df7c0ef7cae6086ddce6daa504d1b454e042d99b14a902c722a591c0d9"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/private-artifacts-001/MOVER_RESULT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/MOVING_OPERATOR_RESULT.json",
+      "bytes": 6081,
+      "sha256": "7624a4a57e791cdf2594676fece0e10d575e6f043e99f154c88bff4bc1b9e440"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/private-artifacts-001/MOVER_READY.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/MOVING_OPERATOR_READY.json",
+      "bytes": 532,
+      "sha256": "1fdb30a72dd7e2e5e9699b5ddb85cb060f0397022fb51515dc0357349b69fff5"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/snapshot-001/stdout.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/CURRENT_ONLY_PRESERVATION.json",
+      "bytes": 6614,
+      "sha256": "86aa81bc13704a020df20d12f997471a2bb0a9bdc5a8cbe8f08ba35c606e56b3"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/stop-001/stdout.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/OWNED_UNITS_STOPPED.json",
+      "bytes": 389,
+      "sha256": "23f04b934a9699d825d3d5241621a28c846db59d9e108c7d0502169239586a7c"
+    },
+    {
+      "source": "cache-wallet-moving-head-20261127/ubuntu/c838/FINAL_RECEIPT.json",
+      "path": "evidence/wallet-moving-head-20261127/c838/FINAL_RECEIPT.json",
+      "bytes": 13896,
+      "sha256": "c58fab3412897da440c350a126b48fb4d4998f9c2c490daa5f263630c56521f9"
+    }
+  ],
+  "source_inventories": {
+    "FUNCTION_INVENTORY.json": {
+      "bytes": 5016972,
+      "sha256": "3cc4379aacd7e1fa107a0d66f5a0459c38f7bed1c3dd76c0ac998fd57480c41f"
+    },
+    "ANONYMOUS_CODE_INVENTORY.json": {
+      "bytes": 34606,
+      "sha256": "e158f5ffe25a974f22f586926a4fc8370ab822f2be6cb727207efa258465e10f"
+    }
+  },
+  "assessment": {
+    "capability": "fixed_block_nft_view_profile:1",
+    "only_exact7_with_both_history_profiles": true,
+    "both_reads_explicit_captured_number_AND_hash": true,
+    "unknown_or_failed_fixed_route_never_latest_fallback": true,
+    "ordinary_latest_endpoints_and_fresh_action_preparation_unchanged": true,
+    "exact_accounting_and_full86400_second_window_preserved": true,
+    "limits_safeguards_signer_and_public_null_configs_unchanged": true,
+    "NEW_distinct_backend_methods": 4,
+    "NEW_distinct_website_methods": 5,
+    "unchanged_test_bodies_rerun": 0,
+    "initial_controlled_fixture_failures_preserved_not_product_defects": true,
+    "actual_complete_seconds": 84.262287667,
+    "actual_final_snapshot_age_seconds": 114.514,
+    "actual_remaining_age_margin_seconds": 5.486,
+    "API_GETs": 36,
+    "consumer_direct_RPCs": 381,
+    "NFTs": 32,
+    "complete_cards": 8,
+    "descriptors": 66,
+    "confirmed_heads": [
+      459,
+      460,
+      461
+    ],
+    "indexer_next_blocks": [
+      460,
+      461,
+      462
+    ],
+    "unchanged_fixture_API_confirmations": 1,
+    "all16_fixed_card_GETs_at_original459": true,
+    "independent96_final_monetary_reads_and8card_comparisons_complete": true,
+    "all123_account_models_and_original_host_environments_preserved": true,
+    "owned_processes_stopped": true,
+    "final_dumpFalse_current_state_only_NOT_archive_recovery": true,
+    "original_full_archive_snapshot_retained": true,
+    "thin_finite_margin_NOT_robust_provider_or_sustained_acceptance": true,
+    "keeper_12_confirmation_example_actual1000NFT_lineage_provider_and_adoption_qualified": false
+  },
+  "raw_private_config_checkpoint_DB_state_payload_parts_credentials_or_recovery_packages_published": false,
+  "service_website_checkpoint_signer_or_chain_adoption": false,
+  "production_approved": false
+}

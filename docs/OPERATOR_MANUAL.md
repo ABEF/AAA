@@ -454,12 +454,11 @@ clock or relabel a latest-only dump as archive-capable. The isolated reconstruct
 is verification evidence, not a general production snapshot-repair procedure.
 See the [current qualification and limits](../reports/CURRENT_REVIEW.md#actual-f6-and-provider-follow-through).
 
-Actual full Source10 qualification is still blocked: after completing the20
-protocol/ownership/currency GETs by76.450s, the all-eight-card journey expires at
-the unchanged120-second snapshot boundary (33requests/117.628s). Its final exact
-totals/provenance assertions were not reached. Do not adopt the lab configuration
-or increase freshness to hide that refusal; qualify reduced card/history work,
-actual maximum wallets/lineage and the provider separately. See the current review.
+The earlier33-request/117.628-second timeout retains its failed source scope.
+The subsequent32-NFT/66-descriptor wallet plus eight-card case completed83.708s
+with final checks. These finite local results do not qualify actual maximum
+wallets/lineage, providers or service adoption. Keep the120-second limit; current
+moving-head results and remaining scope belong to the single current review.
 
 The same explicit `wallet_read_batch:1` now also scopes NFT-detail and earnings
 reads to the existing request-local canonical cache. This removes repeated raw
@@ -482,9 +481,53 @@ keep old journals and releases together; this is no service or signer adoption.
 The affected32-NFT/66-descriptor Ubuntu wallet plus eight cards completes in
 83.708s/36GETs with final accounting and freshness checks. This fixed-head local
 pass is not full1000-NFT/lineage/provider/moving-chain acceptance. Separate latest
-NFT/earnings requests can disagree when the head advances (CWR09); retain exact
-hash equality and unavailable output until a fixed-block capability is reviewed.
+NFT/earnings reads are the historical CWR09 gap; the new advertised fixed-block
+capability below binds both to the same captured anchor without loosening checks.
 All failed capture/source stages remain in the current review.
+
+### Fixed-block card history
+
+The read service now reports `fixed_block_nft_view_profile:1` only for accounting7
+with both ownership and earnings history. This is a reported capability; do not
+add it to the configuration file. Source9/source10 then keep one confirmed wallet
+block/hash for every NFT card and its earnings, even when later blocks arrive.
+
+1. Read `/v1/protocol`; capture its `provenance.block_number` and `block_hash`.
+2. For each selected NFT, GET `/v1/nfts/{id}/at/{block}/{hash}`.
+3. GET `/v1/nfts/{id}/earnings/at/{block}/{hash}` using the SAME pair. Follow the
+   complete wallet/currency inventory procedure for wallet totals as before.
+4. Verify matching block/hash/time/configuration, owner, full currency/history
+   coverage, native/accounting proofs and final canonical/depth/120s checks.
+
+The finite normal32-NFT/eight-card Ubuntu case passes84.262s with two real
+head advances and Indexer lag/ahead. Its final snapshot age114.514s leaves
+only5.486s under120: do not infer broad provider,1000-NFT, production
+confirmation or sustained performance. Review the current evidence before adoption.
+
+For example, if the reviewed protocol gives block460 and hashH, NFT123 uses
+`/v1/nfts/123/at/460/H` and `/v1/nfts/123/earnings/at/460/H`.
+ReplaceH with that exact nonzero lowercase `0x` plus64-digit hash; H is not a
+literal callable input. NFT IDs and block numbers use decimal with no leading
+zeros. Never manually select a newer hash between steps or guess a block hash.
+
+A new head does not invalidate an otherwise fresh canonical snapshot. The
+Indexer must cover the captured block but need not catch the newest head first.
+Later transfers, contributions, claims or LP lifecycle events appear on a new
+refresh; they do not alter an older block's view or grant transaction authority.
+The unchanged full86400-second window is measured at that captured block.
+
+On429/503, the consumer may show holdings with history unavailable after final
+anchor checks; it sends no latest-state substitute. Wrong successful data,
+unknown advertised capability, cancellation, reorg, depth loss and expiry fail
+closed. A retry starts a fresh view, not an extension of the original120 seconds.
+If archive/state/history is unavailable, restore/qualify the matching provider or
+history; do not edit source hashes, relabel an old seed, extend age or invent zeros.
+
+Before separately authorized adoption, install the matching reviewed API/server,
+worker and exact Nginx GET allowlist with the website consumer. Rebuild, review
+and pin a NEW source-matched checkpoint; keep the previous release/configuration/
+checkpoint and database intact. This source change authorizes no service restart,
+site rollout, signing, deployment or sealing. See [route inputs](FRONTEND_API.md#fixed-block-nft-detail-and-earnings).
 
 For a NEW profile2 checkpoint, the offline builder now uses the existing bounded
 canonical cache only within that build. Keep the unchanged60s/4096logical/

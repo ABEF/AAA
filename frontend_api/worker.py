@@ -31,6 +31,8 @@ def _run(output, config, activation_config, action, payload, transaction_config=
                 result = p.mint_readiness()
             elif action == 'nft':
                 result = p.nft(payload)
+            elif action == 'nft_at':
+                result = p.nft_at(*payload)
             elif action == 'wallet':
                 result = p.wallet(payload)
             elif action == 'wallet_page':
@@ -47,6 +49,8 @@ def _run(output, config, activation_config, action, payload, transaction_config=
                 result = p.wallet_aggregate(*payload)
             elif action == 'earnings':
                 result = p.earnings(payload)
+            elif action == 'earnings_at':
+                result = p.earnings_at(*payload)
             elif action == 'activation' and activation_config is not None:
                 result = ActivationTransactions(p, activation_config).prepare(payload)
             elif action == 'transactions' and transaction_config is not None:
@@ -225,6 +229,9 @@ class WorkerClient:
     def nft(self, identifier):
         return self._request('nft', identifier)
 
+    def nft_at(self, identifier, block_number, block_hash):
+        return self._request('nft_at', [identifier, block_number, block_hash])
+
     def wallet(self, owner):
         return self._request('wallet', owner)
 
@@ -248,6 +255,9 @@ class WorkerClient:
 
     def earnings(self, identifier=None):
         return self._request('earnings', identifier)
+
+    def earnings_at(self, identifier, block_number, block_hash):
+        return self._request('earnings_at', [identifier, block_number, block_hash])
 
     def prepare(self, payload):
         if self.activation_config is None and self.transaction_config is None:
@@ -300,6 +310,9 @@ class WorkerPool:
     def nft(self, identifier):
         return self._dispatch('nft', identifier)
 
+    def nft_at(self, identifier, block_number, block_hash):
+        return self._dispatch('nft_at', identifier, block_number, block_hash)
+
     def wallet(self, owner):
         return self._dispatch('wallet', owner)
 
@@ -323,6 +336,9 @@ class WorkerPool:
 
     def earnings(self, identifier=None):
         return self._dispatch('earnings', identifier)
+
+    def earnings_at(self, identifier, block_number, block_hash):
+        return self._dispatch('earnings_at', identifier, block_number, block_hash)
 
     def prepare(self, payload):
         return self._dispatch('prepare', payload)

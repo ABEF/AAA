@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "complete": true,
+  "HEAD": "cccaa5fbe6cff8fe1c51ee0a3a5d470689dc7624",
+  "documentation": {
+    "README.md": "2ab0b3dbd81276a2b41794945f10ba22fcd678b57db68968134212096b9582b3",
+    "AGENTS.md": "6757567ef9985f5031fb6a3b9fad548d34b0dcd76f9a49ed10309b67e7e622da"
+  },
+  "source_tests_build_service_or_rollout_actions": 0
+}

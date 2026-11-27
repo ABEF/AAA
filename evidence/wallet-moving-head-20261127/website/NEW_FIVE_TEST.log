@@ -1,0 +1,13 @@
+✔ NEW actual unmodified source10 earnings DTO stays coherent with cards while confirmed heads advance (420.9861ms)
+✔ NEW advertised fixed capability rejects wrong successful anchors and malformed earnings without latest fallback (424.5607ms)
+✔ NEW fixed-history503 retains honest holdings only after live anchor checks; cancellation is never swallowed (204.2255ms)
+✔ NEW final canonical depth strict120-second and account-cancel guards survive successful fixed HTTP replies (429.7014ms)
+✔ NEW absent capability preserves legacy latest routes and unsupported capability fails before card requests (248.3226ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1947.7104

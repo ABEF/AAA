@@ -540,3 +540,5 @@ evidence/wallet-cards-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blan
 frontend_api/portfolio_v6.py -text whitespace=cr-at-eol
 keeper/compound_policy.py -text whitespace=cr-at-eol
 tests_python/test_runtime_digest_scope.py -text whitespace=cr-at-eol
+tests_python/test_fixed_nft_anchors.py -text whitespace=cr-at-eol
+evidence/wallet-moving-head-20261127/** -text whitespace=cr-at-eol,-blank-at-eol,-blank-at-eof

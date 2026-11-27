@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "kind": "independent_static_CWR09_actual_rehearsal_capsule_review",
+  "complete": true,
+  "generation_sha256": "278c55ec86eddd13da294dd9c922d98df35ae22f75875bc8ddcd04915c44bfbe",
+  "source_files": 120,
+  "runtime_additional_files": 2,
+  "website_files": 26,
+  "raw_source_and_member_pins_verified": true,
+  "semantic_LF_source_identity_preserved": true,
+  "checkpoint_binding_manifest_script_bodies_identical_except_reviewed_pin_filenames": [
+    "checkpoint_only_v6.py",
+    "bind_lab_checkpoint_v5.py",
+    "build_source10_manifest_ubuntu_v6.py"
+  ],
+  "independent_actual_economic_gate_byte_identical": true,
+  "moving_harness_sha256": "a51f8f3c5bb05148b6f4b1d605d01f8cd460dc21a0a2fe9a420d628f199fc4c0",
+  "moving_operator_sha256": "ec90e7cdea695ff7eeb15e0a3a5961f678d0d3383d0ebcc6cd5895506cedd677",
+  "two_genuine_empty_blocks_and_maintained_Indexer_lag_ahead_only": true,
+  "original_HTTP_RPC_DTO_bodies_unmodified": true,
+  "controlled_first_and_fifth_NFT_keep_original_anchor": true,
+  "Node_and_operator_uid65534_ack_permissions_confirmed_by_host": true,
+  "GET_only_local_ingress_preserves_exact_hash_routes": true,
+  "per_API_and_snapshot_limits_unchanged": true,
+  "actual_final_snapshot_age_newly_captured": true,
+  "RPC_or_test_bodies_executed_by_review": 0,
+  "production_adoption": false,
+  "qualification_result_not_yet_available": true
+}

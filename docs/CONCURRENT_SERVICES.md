@@ -83,6 +83,19 @@ count without raising workers, quotas or request ages. It does not establish
 concurrent production capacity or replace the separately deferred load campaign.
 See [the response contract](FRONTEND_API.md#opt-in-whole-wallet-earnings-profile2).
 
+## Fixed-block card reads
+
+The additive NFT detail/earnings `/at/{block}/{hash}` routes use the same workers,
+GET admission,25s/1024logical/2048POST/1MiB and original snapshot-expiry budgets.
+Capability `fixed_block_nft_view_profile:1` requires exact7 plus both reviewed
+history profiles. It is an output selector, not a server configuration flag.
+The exact number/hash is revalidated with live final proofs; newer blocks do not
+reset120 seconds. Complete raw history need only cover that captured block, so
+Indexer lag/ahead relative to the newer head does not justify mixing snapshots.
+Adopt the reviewed exact Nginx allowlist with matching server/worker/consumer and
+a NEW independently reviewed checkpoint. No concurrency, retry, signing, ingress
+or financial limit changes. [Inputs and failures](FRONTEND_API.md#fixed-block-nft-detail-and-earnings).
+
 ## Failures, observations and recovery
 
 1. Check startup JSON for chain ID, port, worker count and connection cap. Verify

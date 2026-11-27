@@ -149,9 +149,16 @@ class Earnings:
                 return self._read(identifier)
         return self._read(identifier)
 
-    def _read(self, identifier):
+    def read_at(self, identifier, block_number, block_hash):
+        if getattr(self.p, 'wallet_read_batch', 0) == 1:
+            from frontend_api.canonical_cache import scope
+            with scope(self.p):
+                return self._read(identifier, snapshot=self.p._snapshot_at(block_number, block_hash))
+        return self._read(identifier, snapshot=self.p._snapshot_at(block_number, block_hash))
+
+    def _read(self, identifier, *, snapshot=None):
         p=self.p
-        header,head,block=p._snapshot()
+        header,head,block=p._snapshot() if snapshot is None else snapshot
         life=p._verify_deployment(block)
         lp,royalties=p._admitted(block)
         history=self.history_snapshot(p,header,block,lp,royalties)
